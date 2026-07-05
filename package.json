@@ -4,7 +4,8 @@
   "private": true,
   "description": "A minimal todo app target repo for gheart.",
   "scripts": {
-    "dev": "node backend/server.js"
+    "dev": "node backend/server.js",
+    "test": "node scripts/smoke-test.js"
   },
   "engines": {
     "node": ">=18"
