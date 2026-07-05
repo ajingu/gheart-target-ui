@@ -63,6 +63,15 @@ function getTodoId(urlPath) {
 }
 
 async function handleApi(request, response, url) {
+  if (url.pathname === "/api/health" && request.method === "GET") {
+    sendJson(response, 200, {
+      ok: true,
+      service: "todo-app",
+      timestamp: new Date().toISOString(),
+    });
+    return;
+  }
+
   if (url.pathname === "/api/todos" && request.method === "GET") {
     sendJson(response, 200, await readTodos());
     return;

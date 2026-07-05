@@ -15,3 +15,9 @@ To use another port:
 ```bash
 PORT=3101 npm run dev
 ```
+
+Health check:
+
+```bash
+curl http://127.0.0.1:3100/api/health
+```
