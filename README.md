@@ -4,6 +4,8 @@ A minimal Todo app used as a target repo for [gheart](https://github.com/ajingu/
 
 ## Run
 
+Requires Node.js 18 or newer. This app has no external npm dependencies, so `npm install` is not required.
+
 ```bash
 npm run dev
 ```
