@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo App</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="todo-panel" aria-labelledby="app-title">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Today</p>
+          <h1 id="app-title">Todo</h1>
+        </div>
+        <p class="summary" id="summary">0 left</p>
+      </header>
+
+      <form class="todo-form" id="todo-form">
+        <label class="sr-only" for="todo-input">New task</label>
+        <input id="todo-input" name="title" type="text" placeholder="Add a task..." autocomplete="off" />
+        <button type="submit">Add</button>
+      </form>
+
+      <div class="toolbar" role="tablist" aria-label="Task filters">
+        <button class="filter-button active" type="button" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-button" type="button" data-filter="active" role="tab" aria-selected="false">Active</button>
+        <button class="filter-button" type="button" data-filter="completed" role="tab" aria-selected="false">Done</button>
+      </div>
+
+      <ul class="todo-list" id="todo-list" aria-live="polite"></ul>
+      <p class="empty-state" id="empty-state" hidden>No tasks here.</p>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
