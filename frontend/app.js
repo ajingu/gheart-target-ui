@@ -3,6 +3,7 @@ const input = document.querySelector("#todo-input");
 const list = document.querySelector("#todo-list");
 const summary = document.querySelector("#summary");
 const emptyState = document.querySelector("#empty-state");
+const clearCompletedButton = document.querySelector("#clear-completed");
 const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
 
 let todos = [];
@@ -40,9 +41,11 @@ function visibleTodos() {
 
 function render() {
   const activeCount = todos.filter((todo) => !todo.completed).length;
+  const completedCount = todos.length - activeCount;
   const filteredTodos = visibleTodos();
 
   summary.textContent = `${activeCount} left`;
+  clearCompletedButton.disabled = completedCount === 0;
   emptyState.hidden = filteredTodos.length > 0;
   list.innerHTML = "";
 
@@ -101,6 +104,12 @@ async function deleteTodo(todo) {
   render();
 }
 
+async function clearCompletedTodos() {
+  await requestJson("/api/todos/completed", { method: "DELETE" });
+  todos = todos.filter((todo) => !todo.completed);
+  render();
+}
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -128,6 +137,8 @@ filterButtons.forEach((button) => {
     render();
   });
 });
+
+clearCompletedButton.addEventListener("click", clearCompletedTodos);
 
 loadTodos().catch((error) => {
   emptyState.hidden = false;

@@ -91,6 +91,14 @@ async function handleApi(request, response, url) {
     return;
   }
 
+  if (url.pathname === "/api/todos/completed" && request.method === "DELETE") {
+    const todos = await readTodos();
+    const nextTodos = todos.filter((todo) => !todo.completed);
+    await writeTodos(nextTodos);
+    sendJson(response, 200, { deleted: todos.length - nextTodos.length });
+    return;
+  }
+
   const todoId = getTodoId(url.pathname);
 
   if (todoId && request.method === "PATCH") {
